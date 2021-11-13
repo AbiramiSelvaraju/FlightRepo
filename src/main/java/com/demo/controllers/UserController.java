@@ -4,7 +4,9 @@ import java.util.List;
 
 import com.demo.dto.UserDTO;
 import com.demo.entities.Airline;
+import com.demo.entities.Ticket;
 import com.demo.entities.User;
+import com.demo.repositories.TicketRepository;
 import com.demo.services.AirlineService;
 import com.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,9 @@ public class UserController {
     @Autowired
     private UserService service;
 
+    @Autowired
+    TicketRepository tRepo;
+
     @GetMapping("/user")
     public List<User> getAllUsers(){
         return service.getAllUsers();
@@ -39,6 +44,14 @@ public class UserController {
         service.createUser(userDTO);
         return new ResponseEntity<>("Created User!", HttpStatus.OK);
     }
+
+    @GetMapping("user/{userId}/ticketSummary")
+    public List<Ticket> get(@PathVariable int userId ) {
+//        return service.getTicketSummary(userId);
+        System.out.println("User Id: "+userId);
+        return tRepo.findByUserId(userId);
+    }
+
 
 
 

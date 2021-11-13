@@ -26,6 +26,7 @@ public class TicketDTO {
      String emailId;
      String pnrNumber;
      Boolean isCancelled;
+     LocalDate journeyDate;
      int grandTicketCost;
      Timestamp createdOn;
      User user;

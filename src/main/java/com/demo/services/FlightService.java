@@ -1,6 +1,8 @@
 package com.demo.services;
 
 import com.demo.dto.FlightDTO;
+import com.demo.dto.FlightListDTO;
+import com.demo.dto.FlightSearchDTO;
 import com.demo.dto.FlightTravelDetailsDTO;
 import com.demo.entities.Flight;
 import com.demo.entities.FlightTravelDetails;
@@ -10,10 +12,13 @@ import com.demo.repositories.FlightTravelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.Tuple;
+import java.sql.Time;
+import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
-
-import static java.util.concurrent.TimeUnit.HOURS;
+import java.util.stream.Collectors;
 
 @Service
 public class FlightService {
@@ -64,5 +69,72 @@ public class FlightService {
     public void create(FlightDTO flightDTO) {
         Flight flight = mapper.toFlight(flightDTO);
         flightRepo.save(flight);
+    }
+
+    public List<FlightListDTO> getFlights(FlightSearchDTO flightSearchDTO) {
+
+        int from_place_id = flightSearchDTO.getTravelpref().getFromPlace().getId();
+        int to_place_id = flightSearchDTO.getTravelpref().getToPlace().getId();
+        List<Integer> scheduled_ids = new ArrayList<>(); // scheduled ids logic impl needed
+        int tripTypeId = flightSearchDTO.getTravelpref().getTripType().getId();
+        LocalDate journeyDate = flightSearchDTO.getDepartOn();
+
+        System.out.println(journeyDate.getDayOfWeek());
+
+        String journeyDay = journeyDate.getDayOfWeek().toString();
+        scheduled_ids.add(1);
+        switch (journeyDay){
+            case "MONDAY":
+                scheduled_ids.add(3);
+                scheduled_ids.add(4);
+                break;
+            case "TUESDAY":
+                scheduled_ids.add(3);
+                scheduled_ids.add(5);
+                break;
+            case "WEDNESDAY":
+                scheduled_ids.add(3);
+                scheduled_ids.add(6);
+                break;
+            case "THURSDAY":
+                scheduled_ids.add(3);
+                scheduled_ids.add(7);
+                break;
+            case "FRIDAY":
+                scheduled_ids.add(3);
+                scheduled_ids.add(8);
+                break;
+            case "SATURDAY":
+                scheduled_ids.add(2);
+                scheduled_ids.add(9);
+                break;
+            case "SUNDAY":
+                scheduled_ids.add(2);
+                scheduled_ids.add(10);
+                break;
+        }
+
+        System.out.println(scheduled_ids);
+
+        List<Tuple> tuples =  flightRepo.findDesiredFlights(from_place_id, to_place_id, tripTypeId, scheduled_ids);
+
+        List<FlightListDTO> flightListDTO = tuples.stream()
+                .map(t -> new FlightListDTO(
+                        t.get(0, String.class),
+                        t.get(1, String.class),
+                        t.get(2, Integer.class),
+                        t.get(3, Time.class),
+                        t.get(4, Time.class),
+                        t.get(1, String.class),
+                        t.get(2, Integer.class)
+                ))
+                .collect(Collectors.toList());
+        return flightListDTO;
+//        System.out.println(flightSearchDTO.getTravelpref().getFromPlace().toString());
+
+//        return flightRepo.findDesiredFlights(flightSearchDTO.getTravelpref().getFromPlace(),
+//                flightSearchDTO.getTravelpref().getFromPlace(),
+//                flightSearchDTO.getTravelpref().getTripType());
+
     }
 }

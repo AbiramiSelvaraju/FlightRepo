@@ -1,6 +1,7 @@
 package com.demo.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties("ticket")
 public class Passenger {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -29,7 +31,6 @@ public class Passenger {
     @JoinColumn(name = "seat_id", referencedColumnName = "id")
     private SeatNumber seatNumber;
     @ManyToOne
-    @JsonIgnore
     private Ticket ticket;
 
     @PrePersist

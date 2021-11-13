@@ -2,6 +2,7 @@ package com.demo.services;
 
 import com.demo.dto.UserDTO;
 import com.demo.entities.Airline;
+import com.demo.entities.Ticket;
 import com.demo.entities.User;
 import com.demo.mapper.UserMapper;
 import com.demo.repositories.AirlineRepository;
@@ -28,5 +29,9 @@ public class UserService {
         User user = mapper.toUser(userDTO);
         repo.save(user);
     }
+
+//    public List<Ticket> getTicketSummary(int userId){
+//        return repo.getByUserId(userId);
+//    }
 
 }

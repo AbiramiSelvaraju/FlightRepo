@@ -1,10 +1,10 @@
 package com.demo.controllers;
 
 import com.demo.dto.FlightDTO;
+import com.demo.dto.FlightListDTO;
+import com.demo.dto.FlightSearchDTO;
 import com.demo.dto.FlightTravelDetailsDTO;
-import com.demo.entities.Airline;
-import com.demo.entities.Flight;
-import com.demo.entities.FlightTravelDetails;
+import com.demo.entities.*;
 import com.demo.services.AirlineService;
 import com.demo.services.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -55,4 +56,9 @@ public class FlightController {
         return new ResponseEntity<>("Created FlightTravelDetails!", HttpStatus.OK);
     }
 
+//    Get flights
+    @PostMapping("/flightsearch")
+    public List<FlightListDTO> getFlights(@RequestBody FlightSearchDTO flightSearchDTO) {
+        return service.getFlights(flightSearchDTO);
+    }
 }

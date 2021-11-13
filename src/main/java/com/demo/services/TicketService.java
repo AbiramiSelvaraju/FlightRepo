@@ -47,14 +47,15 @@ public class TicketService {
         ticket.setPnrNumber(randomUniqueNumber);
 
 //        iterate and add passenger if passenger is not set  in mapper
-
+        Ticket t = ticketRepo.save(ticket);
         if (ticket.getPassengers().size() != 0) {
             ticket.getPassengers().forEach(passengerEntry -> {
                 passengerEntry.setTicketNumber(randomUniqueNumber);
+                passengerEntry.setTicket(t);
                 passengerRepo.save(passengerEntry);
             });
 
-            ticketRepo.save(ticket);
+//            ticketRepo.save(ticket);
         }
         return randomUniqueNumber;
     }

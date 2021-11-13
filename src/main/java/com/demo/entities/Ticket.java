@@ -1,6 +1,7 @@
 package com.demo.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
@@ -25,6 +26,7 @@ public class Ticket {
     private String emailId;
     private String pnrNumber;
     private Boolean isCancelled;
+    private LocalDate journeyDate;
     private Timestamp createdOn;
     @JsonIgnore
     @ManyToOne
