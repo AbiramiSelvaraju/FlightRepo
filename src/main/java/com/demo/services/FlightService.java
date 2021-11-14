@@ -6,12 +6,14 @@ import com.demo.dto.FlightSearchDTO;
 import com.demo.dto.FlightTravelDetailsDTO;
 import com.demo.entities.Flight;
 import com.demo.entities.FlightTravelDetails;
+import com.demo.entities.User;
 import com.demo.mapper.FlightMapper;
 import com.demo.repositories.FlightRepository;
 import com.demo.repositories.FlightTravelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.Tuple;
 import java.sql.Time;
 import java.time.LocalDate;
@@ -65,7 +67,6 @@ public class FlightService {
         flightTravelRepo.save(flightTravelDetails);
     }
 
-//    Flight
     public void create(FlightDTO flightDTO) {
         Flight flight = mapper.toFlight(flightDTO);
         flightRepo.save(flight);
@@ -78,8 +79,6 @@ public class FlightService {
         List<Integer> scheduled_ids = new ArrayList<>(); // scheduled ids logic impl needed
         int tripTypeId = flightSearchDTO.getTravelpref().getTripType().getId();
         LocalDate journeyDate = flightSearchDTO.getDepartOn();
-
-        System.out.println(journeyDate.getDayOfWeek());
 
         String journeyDay = journeyDate.getDayOfWeek().toString();
         scheduled_ids.add(1);
@@ -114,8 +113,6 @@ public class FlightService {
                 break;
         }
 
-        System.out.println(scheduled_ids);
-
         List<Tuple> tuples =  flightRepo.findDesiredFlights(from_place_id, to_place_id, tripTypeId, scheduled_ids);
 
         List<FlightListDTO> flightListDTO = tuples.stream()
@@ -129,12 +126,8 @@ public class FlightService {
                         t.get(2, Integer.class)
                 ))
                 .collect(Collectors.toList());
+
         return flightListDTO;
-//        System.out.println(flightSearchDTO.getTravelpref().getFromPlace().toString());
-
-//        return flightRepo.findDesiredFlights(flightSearchDTO.getTravelpref().getFromPlace(),
-//                flightSearchDTO.getTravelpref().getFromPlace(),
-//                flightSearchDTO.getTravelpref().getTripType());
-
     }
+
 }

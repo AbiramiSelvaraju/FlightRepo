@@ -1,6 +1,7 @@
 package com.demo.services;
 
 import com.demo.dto.TicketDTO;
+import com.demo.entities.Airline;
 import com.demo.entities.Ticket;
 import com.demo.mapper.TicketMapper;
 import com.demo.repositories.FlightTravelRepository;
@@ -9,6 +10,7 @@ import com.demo.repositories.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.security.SecureRandom;
 import java.util.List;
 
@@ -54,9 +56,15 @@ public class TicketService {
                 passengerEntry.setTicket(t);
                 passengerRepo.save(passengerEntry);
             });
-
-//            ticketRepo.save(ticket);
         }
+
         return randomUniqueNumber;
     }
+
+    public Ticket cancelTicket(int ticketId) {
+            Ticket ticket = ticketRepo.findById(ticketId).orElseThrow(()->new EntityNotFoundException("Entity Not Found to Cancel"));
+            ticket.setIsCancelled(false);
+            return ticketRepo.save(ticket);
+    }
+
 }

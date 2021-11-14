@@ -24,16 +24,14 @@ public class AirlineController {
     }
 
     @PostMapping("/airline")
-    public Airline createAirline(@RequestBody Airline airline) {
-        return service.createAirline(airline);
-    }
-
-    @PostMapping("/secured/airline")
     public ResponseEntity<String> create(@RequestBody AirlineDTO airlineDTO) throws Exception {
         service.saveAirline(airlineDTO);
-        return new ResponseEntity<>("Created Airline", HttpStatus.OK);
+        return new ResponseEntity<>("Created Airline", HttpStatus.CREATED);
     }
 
-
-
+    @PutMapping("/airline/{airlineId}/block")
+    public ResponseEntity<HttpStatus> blockAirline(@PathVariable int airlineId ) {
+        service.blockAirline(airlineId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }

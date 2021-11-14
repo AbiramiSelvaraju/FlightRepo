@@ -7,7 +7,9 @@ import com.demo.repositories.AirlineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AirlineService {
@@ -29,5 +31,11 @@ public class AirlineService {
     public void saveAirline(AirlineDTO airlineDTO) {
         Airline airline = mapper.toAirline(airlineDTO);
         repo.save(airline);
+    }
+
+    public Airline blockAirline(int airlineId) {
+        Airline airline = repo.findById(airlineId).orElseThrow(()->new EntityNotFoundException("Entity Not Found to Block"));
+        airline.setIsActive(false);
+        return repo.save(airline);
     }
 }

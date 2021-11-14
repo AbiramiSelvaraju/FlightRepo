@@ -25,14 +25,7 @@ public class TicketController {
     @PostMapping("/ticket")
     public ResponseEntity<String> create(@RequestBody TicketDTO ticketDTO) {
         String PNRnumber = service.createTicket(ticketDTO);
-        return new ResponseEntity<>("Ticket created! \n Generated PNR number: "+PNRnumber, HttpStatus.OK);
+        return new ResponseEntity<>("Ticket created! \n Generated PNR number: "+PNRnumber, HttpStatus.CREATED);
     }
-
-//    @PostMapping("/ticketBook")
-//    public UserTicketBookingDetails createTicket(@RequestBody TicketDTO ticket) {
-//        return service.createTicketBook(ticket);
-//    }
-
-
 
 }

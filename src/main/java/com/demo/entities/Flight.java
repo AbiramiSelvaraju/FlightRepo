@@ -29,7 +29,7 @@ public class Flight {
     private int totalBusinessSeats;
     private int totalNonBusinessSeats;
     private int numberOfRows;
-    private Boolean isActive;
+    private Boolean isBlocked;
     private Timestamp createdOn;
 
     @ManyToOne
@@ -43,7 +43,7 @@ public class Flight {
     public void prePersist() {
         Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
         createdOn = currentTimestamp;
-        isActive = true;
+        isBlocked = true;
     }
 
 }

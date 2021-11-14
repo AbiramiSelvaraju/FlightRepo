@@ -24,7 +24,7 @@ public class FlightDTO {
       int totalBusinessSeats;
       int totalNonBusinessSeats;
       int numberOfRows;
-      Boolean isActive;
+      Boolean isBlocked;
       Timestamp createdOn;
       Airline airline;
       List<FlightTravelDetails> travelDetails;

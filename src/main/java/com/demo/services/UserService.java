@@ -1,11 +1,8 @@
 package com.demo.services;
 
 import com.demo.dto.UserDTO;
-import com.demo.entities.Airline;
-import com.demo.entities.Ticket;
 import com.demo.entities.User;
 import com.demo.mapper.UserMapper;
-import com.demo.repositories.AirlineRepository;
 import com.demo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +18,7 @@ public class UserService {
     @Autowired
     private UserMapper mapper;
 
-    public List<User> getAllUsers(){
+    public List<User> getAllUsers() {
         return repo.findAll();
     }
 
@@ -30,8 +27,5 @@ public class UserService {
         repo.save(user);
     }
 
-//    public List<Ticket> getTicketSummary(int userId){
-//        return repo.getByUserId(userId);
-//    }
 
 }

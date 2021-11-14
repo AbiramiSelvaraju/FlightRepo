@@ -23,7 +23,7 @@ public interface FlightRepository extends JpaRepository<Flight, Integer> {
                     "inner join flight.flight_travel_details ftd on f.id = ftd.flight_id\n" +
                     "left join flight.airline a on a.id = f.airline_id\n" +
                     "where ftd.from_place_id = :f_id and ftd.to_place_id = :t_id\n" +
-                    "and ftd.trip_type_id= :tt_id and ftd.schedule_id in (:s_ids)",
+                    "and ftd.trip_type_id= :tt_id and ftd.schedule_id in (:s_ids) and a.is_active= true",
             nativeQuery = true)
     List<Tuple> findDesiredFlights(int f_id,
                                    int t_id,
