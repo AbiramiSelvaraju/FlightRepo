@@ -39,12 +39,17 @@ public class AirlineController {
         return new ResponseEntity<>("Created Airline", HttpStatus.CREATED);
     }
 
-    @PutMapping("/airline/{airlineId}/block")
-    public ResponseEntity<HttpStatus> blockAirline(@PathVariable int airlineId ) {
+    @PutMapping("/airline/block")
+    public ResponseEntity<HttpStatus> blockAirline(@RequestBody int airlineId ) {
         AirlineDTO airlineDTO = service.blockAirline(airlineId);
         com.demo.dto.Airline a = new com.demo.dto.Airline(airlineDTO.getName(), airlineDTO.getContactNumber(), airlineDTO.getContactAddress(), airlineDTO.getIsActive());
 
-        kafkaTemplate.send(TOPIC, a);
+//        kafkaTemplate.send(TOPIC, a);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+        @PutMapping("/airline/unblock")
+        public ResponseEntity<HttpStatus> unBlockAirline(@RequestBody int airlineId ) {
+            service.unBlockAirline(airlineId);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

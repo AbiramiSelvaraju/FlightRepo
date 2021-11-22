@@ -40,4 +40,12 @@ public class AirlineService {
         AirlineDTO airlineDTO = mapper.toAirlineDTO(airline);
         return airlineDTO;
     }
+
+    public void unBlockAirline(int airlineId) {
+        Airline airline = repo.findById(airlineId).orElseThrow(()->new EntityNotFoundException("Entity Not Found to unBlock"));
+        airline.setIsActive(true);
+        airline = repo.save(airline);
+        AirlineDTO airlineDTO = mapper.toAirlineDTO(airline);
+//        return airlineDTO;
+    }
 }
