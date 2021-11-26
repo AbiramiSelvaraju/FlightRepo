@@ -23,9 +23,9 @@ public class TicketController {
     }
 
     @PostMapping("/ticket")
-    public ResponseEntity<String> create(@RequestBody TicketDTO ticketDTO) {
+    public ResponseEntity<HttpStatus> create(@RequestBody TicketDTO ticketDTO) {
         String PNRnumber = service.createTicket(ticketDTO);
-        return new ResponseEntity<>("Ticket created! \n Generated PNR number: "+PNRnumber, HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
 }

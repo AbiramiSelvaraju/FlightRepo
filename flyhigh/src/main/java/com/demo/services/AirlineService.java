@@ -24,12 +24,15 @@ public class AirlineService {
         return repo.findAll();
     }
 
-    public Airline createAirline(Airline m) {
-        return repo.save(m);
-    }
-
     public void saveAirline(AirlineDTO airlineDTO) {
         Airline airline = mapper.toAirline(airlineDTO);
+        repo.save(airline);
+    }
+    public void updateAirline(AirlineDTO airlineDTO) {
+        Airline airline = repo.findById(airlineDTO.getId()).orElseThrow(()->new EntityNotFoundException("Entity Not Found to Edit"));
+        airline.setName(airlineDTO.getName());
+        airline.setContactAddress(airlineDTO.getContactAddress());
+        airline.setContactNumber(airlineDTO.getContactNumber());
         repo.save(airline);
     }
 
@@ -47,5 +50,9 @@ public class AirlineService {
         airline = repo.save(airline);
         AirlineDTO airlineDTO = mapper.toAirlineDTO(airline);
 //        return airlineDTO;
+    }
+
+    public Airline getAirlineById(int id) {
+        return repo.findById(id).orElseThrow(()-> new EntityNotFoundException());
     }
 }

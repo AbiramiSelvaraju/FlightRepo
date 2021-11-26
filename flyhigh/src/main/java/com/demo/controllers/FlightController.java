@@ -26,9 +26,20 @@ public class FlightController {
 //  FLIGHT CONTROLLERS
 
     @PostMapping("/flight")
-    public ResponseEntity<String> create(@RequestBody FlightDTO flightDTO) {
+    public ResponseEntity<HttpStatus> create(@RequestBody FlightDTO flightDTO) {
         service.create(flightDTO);
-        return new ResponseEntity<>("Created Flight!", HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @PutMapping("/flight")
+    public ResponseEntity<HttpStatus> update(@RequestBody FlightDTO flightDTO) {
+        service.update(flightDTO);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/flight/{id}")
+    public Flight getFlightById(@PathVariable int id){
+        return service.getFlightById(id);
     }
 
     @GetMapping("/flight")
@@ -44,10 +55,15 @@ public class FlightController {
     }
 
 
+    @GetMapping("/flightTravelDetail/{id}")
+    public FlightTravelDetails getAllFlightTravelDetailsById(@PathVariable int id){
+        return service.getFlightTravelDetailsById(id);
+    }
+
     @PostMapping("/flightTravelDetail")
-    public ResponseEntity<String> createFTD(@RequestBody FlightTravelDetailsDTO flightTravelDTO) {
+    public ResponseEntity<HttpStatus> createFTD(@RequestBody FlightTravelDetailsDTO flightTravelDTO) {
         service.createFlightTravelDetail(flightTravelDTO);
-        return new ResponseEntity<>("Created FlightTravelDetails!", HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
 //    FLIGHT SEARCH CONTROLLERS

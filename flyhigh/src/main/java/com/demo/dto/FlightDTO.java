@@ -19,6 +19,7 @@ import java.util.List;
 @AllArgsConstructor
 public class FlightDTO {
 
+      int id;
       String number;
       String instrumentUsed;
       int totalBusinessSeats;

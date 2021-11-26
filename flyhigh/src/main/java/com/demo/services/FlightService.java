@@ -4,6 +4,7 @@ import com.demo.dto.FlightDTO;
 import com.demo.dto.FlightListDTO;
 import com.demo.dto.FlightSearchDTO;
 import com.demo.dto.FlightTravelDetailsDTO;
+import com.demo.entities.Airline;
 import com.demo.entities.Flight;
 import com.demo.entities.FlightTravelDetails;
 import com.demo.entities.User;
@@ -16,7 +17,8 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.Tuple;
 import java.sql.Time;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +39,16 @@ public class FlightService {
     public List<Flight> getAllFlights(){
         return flightRepo.findAll();
     }
+
+    public Flight getFlightById(int id){
+        return flightRepo.findById(id).orElseThrow(()-> new EntityNotFoundException());
+    }
+
+    public FlightTravelDetails getFlightTravelDetailsById(int id){
+        return flightTravelRepo.findById(id).orElseThrow(()-> new EntityNotFoundException());
+    }
+
+
 // Flight travel details
     public List<FlightTravelDetails> getAllFlightTravelDetails() {
         return flightTravelRepo.findAll();
@@ -69,14 +81,16 @@ public class FlightService {
     }
 
     public List<FlightListDTO> getFlights(FlightSearchDTO flightSearchDTO) {
-
-        int from_place_id = flightSearchDTO.getTravelpref().getFromPlace().getId();
-        int to_place_id = flightSearchDTO.getTravelpref().getToPlace().getId();
+        String journeyDay;
+        int from_place_id = flightSearchDTO.getFromPlace().getId();
+        int to_place_id = flightSearchDTO.getToPlace().getId();
         List<Integer> scheduled_ids = new ArrayList<>(); // scheduled ids logic impl needed
-        int tripTypeId = flightSearchDTO.getTravelpref().getTripType().getId();
-        LocalDate journeyDate = flightSearchDTO.getDepartOn();
+        int tripTypeId = flightSearchDTO.getTripType().getId();
+        LocalDateTime journeyDate  = flightSearchDTO.getDepartOn();
+        System.out.println(">>> journeyDate "+journeyDate);
+        System.out.println(">>> journeyDay "+journeyDate.getDayOfWeek().toString());
+        journeyDay = journeyDate.getDayOfWeek().toString();
 
-        String journeyDay = journeyDate.getDayOfWeek().toString();
         scheduled_ids.add(1);
         switch (journeyDay){
             case "MONDAY":
@@ -118,12 +132,23 @@ public class FlightService {
                         t.get(2, Integer.class),
                         t.get(3, Time.class),
                         t.get(4, Time.class),
-                        t.get(1, String.class),
-                        t.get(2, Integer.class)
+                        t.get(5, String.class),
+                        t.get(6, Integer.class),
+                        t.get(7, Integer.class)
                 ))
                 .collect(Collectors.toList());
 
         return flightListDTO;
     }
 
+    public void update(FlightDTO flightDTO) {
+        Flight flight = flightRepo.findById(flightDTO.getId()).orElseThrow(()->new EntityNotFoundException("Entity Not Found to Edit"));
+        flight.setNumber(flightDTO.getNumber());
+        flight.setInstrumentUsed(flightDTO.getInstrumentUsed());
+        flight.setNumberOfRows(flightDTO.getNumberOfRows());
+        flight.setTotalBusinessSeats(flightDTO.getTotalBusinessSeats());
+        flight.setTotalNonBusinessSeats(flightDTO.getTotalNonBusinessSeats());
+//        flight.setAirline(flightDTO.getAirline());
+        flightRepo.save(flight);
+    }
 }

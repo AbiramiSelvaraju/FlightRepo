@@ -18,7 +18,7 @@ public interface FlightRepository extends JpaRepository<Flight, Integer> {
 
     @Query(
             value = "select a.name,f.number,ftd.flight_id, ftd.from_time, ftd.to_time,\n" +
-                    "ftd.estimate_journey_duration, ftd.ticket_cost\n" +
+                    "ftd.estimate_journey_duration, ftd.ticket_cost, ftd.id \n"+
                     "from flight.flight f\n" +
                     "inner join flight.flight_travel_details ftd on f.id = ftd.flight_id\n" +
                     "left join flight.airline a on a.id = f.airline_id\n" +

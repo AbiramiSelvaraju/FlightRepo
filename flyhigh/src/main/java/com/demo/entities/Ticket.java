@@ -37,7 +37,7 @@ public class Ticket {
 
     @JsonIgnore
     @ManyToOne
-    private User user;
+    User user;
 
     @OneToOne
     private MealType mealType;
@@ -53,6 +53,8 @@ public class Ticket {
         Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
         createdOn = currentTimestamp;
         isCancelled = false;
+        user = new User();
+        user.setId(1);
     }
 
 }

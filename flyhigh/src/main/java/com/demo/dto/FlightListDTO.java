@@ -8,8 +8,6 @@ import java.sql.Time;
 import java.time.LocalTime;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class FlightListDTO {
 
 //    String airlineName;
@@ -27,8 +25,9 @@ public class FlightListDTO {
     LocalTime toTime;
     String estimateJourneyDuration;
     int ticketCost;
+    int flightScheduleId;
 
-    public FlightListDTO(String name, String number, int id, Time fromTime, Time toTime, String estimateJourneyDuration, int ticketCost) {
+    public FlightListDTO(String name, String number, int id, Time fromTime, Time toTime, String estimateJourneyDuration, int ticketCost, int flightScheduleId) {
         this.name = name;
         this.number = number;
         this.id = id;
@@ -36,5 +35,7 @@ public class FlightListDTO {
         this.toTime = toTime.toLocalTime();
         this.estimateJourneyDuration = estimateJourneyDuration;
         this.ticketCost = ticketCost;
+        this.flightScheduleId = flightScheduleId;
+
     }
 }

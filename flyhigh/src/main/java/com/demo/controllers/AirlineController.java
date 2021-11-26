@@ -28,16 +28,28 @@ public class AirlineController {
 
     private static final String TOPIC = "kafka_topic";
 
+    @GetMapping("/airline/{id}")
+    public Airline getAllAirlines(@PathVariable int id){
+        return service.getAirlineById(id);
+    }
+
     @GetMapping("/airline")
     public List<Airline> getAllAirlines(){
         return service.getAllAirlines();
     }
 
     @PostMapping("/airline")
-    public ResponseEntity<String> create(@RequestBody AirlineDTO airlineDTO) throws Exception {
+    public ResponseEntity<HttpStatus> create(@RequestBody AirlineDTO airlineDTO) throws Exception {
         service.saveAirline(airlineDTO);
-        return new ResponseEntity<>("Created Airline", HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+    @PutMapping("/airline")
+    public ResponseEntity<HttpStatus> update(@RequestBody AirlineDTO airlineDTO){
+        service.updateAirline(airlineDTO);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 
     @PutMapping("/airline/block")
     public ResponseEntity<HttpStatus> blockAirline(@RequestBody int airlineId ) {

@@ -74,4 +74,7 @@ public class TicketService {
             return ticketRepo.save(ticket);
     }
 
+    public List<Ticket> getAllTicketsByUserId() {
+        return ticketRepo.findByUserId(1);
+    }
 }

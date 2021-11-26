@@ -43,9 +43,9 @@ public class UserController {
 
 //    USER TICKET SUMMARY
 
-    @GetMapping("user/{userId}/ticketSummary")
-    public List<Ticket> get(@PathVariable int userId ) {
-        return tRepo.findByUserId(userId);
+    @GetMapping("/ticketSummary")
+    public List<Ticket> getAllTicketsByUserId(){
+        return ticketService.getAllTicketsByUserId();
     }
 
     @PutMapping("/ticket/{ticketId}/cancel")
