@@ -1,17 +1,11 @@
 package com.demo.repositories;
 
-import com.demo.dto.FlightListDTO;
-import com.demo.dto.FlightSearchDTO;
-import com.demo.entities.Airline;
 import com.demo.entities.Flight;
-import com.demo.entities.Place;
-import com.demo.entities.TripType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import javax.persistence.Tuple;
-import java.time.LocalDate;
 import java.util.List;
 
 public interface FlightRepository extends JpaRepository<Flight, Integer> {
@@ -29,5 +23,13 @@ public interface FlightRepository extends JpaRepository<Flight, Integer> {
                                    int t_id,
                                    int tt_id,
                                    List<Integer> s_ids);
+
+
+    @Query(value = "select t.email_id\n" +
+                    "from ticket t \n" +
+                    "join flight_travel_details ftd on t.flight_travel_details_id = ftd.id\n" +
+                    "join flight f on f.id = ftd.flight_id\n" +
+                    "where f.id = :flightID", nativeQuery = true)
+    List<String> findUserBookedFlight(@Param("flightID") int fid);
 
 }

@@ -40,3 +40,9 @@ left join flight.airline a on a.id = f.airline_id
 where ftd.from_place_id =2 and ftd.to_place_id = 3 and ftd.trip_type_id=1
 and t.schedule_id in ();
 
+
+select f.id as flight_id,t.*
+from flight.ticket t
+join flight.flight_travel_details ftd on t.flight_travel_details_id = ftd.id
+join flight.flight f on f.id = ftd.flight_id
+where f.id = 4;

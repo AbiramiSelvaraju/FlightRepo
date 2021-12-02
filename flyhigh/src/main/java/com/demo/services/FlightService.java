@@ -1,9 +1,6 @@
 package com.demo.services;
 
-import com.demo.dto.FlightDTO;
-import com.demo.dto.FlightListDTO;
-import com.demo.dto.FlightSearchDTO;
-import com.demo.dto.FlightTravelDetailsDTO;
+import com.demo.dto.*;
 import com.demo.entities.Airline;
 import com.demo.entities.Flight;
 import com.demo.entities.FlightTravelDetails;
@@ -35,6 +32,9 @@ public class FlightService {
 
     @Autowired
     private FlightMapper mapper;
+
+    @Autowired
+    EmailService emailService;
 
     public List<Flight> getAllFlights(){
         return flightRepo.findAll();
@@ -151,4 +151,20 @@ public class FlightService {
 //        flight.setAirline(flightDTO.getAirline());
         flightRepo.save(flight);
     }
+
+     public void blockFlight(int flightId) {
+         Flight flight = flightRepo.findById(flightId).orElseThrow(() -> new EntityNotFoundException("Flight Entity Not Found to Block"));
+
+         List<String> emailIds =  flightRepo.findUserBookedFlight(flightId);
+
+         emailIds.stream().forEach(e-> {
+             emailService.send("admin@gmail.com", e, "Flight Block Notification",
+                     "Dear customer, \n The flight booked by you (Flight ID: " +flightId +" ) " +
+                             "was unfortunately blocked due to technical issues. The ticket cost will be refunded asap. \n Please find an alternative! \n Sorry for inconvinience caused! \n\n By, Team Flyhigh!");
+         });
+
+         flight.setIsBlocked(true);
+         flightRepo.save(flight);
+     }
+
 }

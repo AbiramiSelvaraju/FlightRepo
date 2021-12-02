@@ -8,11 +8,9 @@ import com.demo.mapper.TicketMapper;
 import com.demo.repositories.FlightTravelRepository;
 import com.demo.repositories.PassengerRepository;
 import com.demo.repositories.TicketRepository;
-import org.bouncycastle.math.raw.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
 import java.security.SecureRandom;
 import java.util.List;
 

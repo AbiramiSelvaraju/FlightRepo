@@ -6,7 +6,6 @@ import com.demo.services.AirlineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,19 +13,20 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/v1/api")
+@CrossOrigin
 public class AirlineController {
 
     @Autowired
     private AirlineService service;
 
 //    @Autowired
-    private KafkaTemplate kafkaTemplate;
+//    private KafkaTemplate kafkaTemplate;
 
-    public AirlineController(KafkaTemplate kafkaTemplate){
-        this.kafkaTemplate = kafkaTemplate;
-    }
+//    public AirlineController(KafkaTemplate kafkaTemplate){
+//        this.kafkaTemplate = kafkaTemplate;
+//    }
 
-    private static final String TOPIC = "kafka_topic";
+//    private static final String TOPIC = "kafka_topic";
 
     @GetMapping("/airline/{id}")
     public Airline getAllAirlines(@PathVariable int id){

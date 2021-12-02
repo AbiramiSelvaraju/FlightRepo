@@ -1,23 +1,19 @@
 package com.demo.controllers;
 
-import com.demo.dto.FlightDTO;
-import com.demo.dto.FlightListDTO;
-import com.demo.dto.FlightSearchDTO;
-import com.demo.dto.FlightTravelDetailsDTO;
+import com.demo.dto.*;
 import com.demo.entities.Flight;
 import com.demo.entities.FlightTravelDetails;
-import com.demo.entities.User;
 import com.demo.services.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
 @RequestMapping("/v1/api")
+@CrossOrigin
 public class FlightController {
 
     @Autowired
@@ -70,5 +66,11 @@ public class FlightController {
     @PostMapping("/flightSearch")
     public List<FlightListDTO> getFlights(@RequestBody FlightSearchDTO flightSearchDTO) {
         return service.getFlights(flightSearchDTO);
+    }
+
+    @PutMapping("/flight/block/{flightId}")
+    public ResponseEntity<HttpStatus> blockFlight(@PathVariable int flightId ) {
+        service.blockFlight(flightId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

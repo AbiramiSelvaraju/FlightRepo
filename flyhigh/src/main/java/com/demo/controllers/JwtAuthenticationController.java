@@ -4,6 +4,7 @@ import com.demo.config.JwtTokenUtil;
 import com.demo.config.JwtUserDetailsService;
 import com.demo.dto.JwtRequest;
 import com.demo.dto.JwtResponse;
+import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -11,10 +12,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -30,6 +28,12 @@ public class JwtAuthenticationController {
     @Autowired
     private JwtUserDetailsService userDetailsService;
 
+
+    @GetMapping(value = "/welcome")
+    public String Welcome(){
+        return "Super bellu!";
+    }
+
     @PostMapping (value = "/authenticate")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
 
@@ -40,7 +44,9 @@ public class JwtAuthenticationController {
 
         final String token = jwtTokenUtil.generateToken(userDetails);
 
-        return ResponseEntity.ok(new JwtResponse(token));
+        Claims claims = jwtTokenUtil.getAllClaimsFromToken(token);
+
+        return ResponseEntity.ok(new JwtResponse(token, claims.get("role").toString()));
     }
 
     private void authenticate(String username, String password) throws Exception {
