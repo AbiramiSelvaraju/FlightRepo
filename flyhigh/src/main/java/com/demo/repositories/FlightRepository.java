@@ -19,10 +19,10 @@ public interface FlightRepository extends JpaRepository<Flight, Integer> {
                     "where ftd.from_place_id = :f_id and ftd.to_place_id = :t_id\n" +
                     "and ftd.trip_type_id= :tt_id and ftd.schedule_id in (:s_ids) and a.is_active= true",
             nativeQuery = true)
-    List<Tuple> findDesiredFlights(int f_id,
-                                   int t_id,
-                                   int tt_id,
-                                   List<Integer> s_ids);
+    List<Tuple> findDesiredFlights(@Param("f_id") int f_id,
+                                   @Param("t_id") int t_id,
+                                   @Param("tt_id") int tt_id,
+                                   @Param("s_ids") List<Integer> s_ids);
 
 
     @Query(value = "select t.email_id\n" +
