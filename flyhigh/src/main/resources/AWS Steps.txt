@@ -1,0 +1,57 @@
+Create RDS Steps
+
+1. Choose RDS service fromAWS portal.
+2. Choose MySQL with free tier option
+3. Check the desiered configurations
+4. Create Database
+5. Configure the security groups of the RDS
+6. Configure the Host and credentionals in the Spring boot properties file. 
+7. Check the connection
+
+
+Create EC2 instance
+
+1. Choose EC2 service from the AWS portal
+2. Choose Linux 2 AMI with free tier option
+3. Do the required configurations like security group, tags, network and etc
+4. Connect to the EC2 instance with SSH
+5. Finally we are in EC2 instance
+
+Deploy the Backend code in EC2 
+
+1. Build the backend code 
+2. Upload the jar in S3 bucket(Make it public)
+3. Download the jar using wget linkOfObject
+4. Run the jar using java -jar filename
+
+My Backend URL - http://ec2-3-141-98-58.us-east-2.compute.amazonaws.com:9090/
+
+Deploy Angular App
+
+1. Buid the App using Ng buid cmd
+2. Zip the application folder inside the dist folder
+3. Copy to S3 and Download in EC2
+		wget ziplinks3
+		unzip zipfilename
+4. Download Ngnix
+		sudo amazon-linux-extras install nginx1
+5. Check the Ngnix status
+		sudo service nginx status  -- It should be Inactive
+6. Start the Ngnix Server
+	sudo service nginx start -- It should be running
+7. Check the status again to make sure ngnix is running
+8. Go to EC@ DNS name with port 80 like EC2name:80 // We will get Ngnix page
+9. Stop the Ngnix server  sudo service nginx stop
+10. cd /usr/share/nginx/html
+11. sudo su
+12. ls
+13. Delete all the fiels using unlink file anme
+14. Remove the icons folder by using rm -rf icons
+15. ls - no files should be there. 
+16. cp /home/ec2-user/MakeMeFlyApp/*.* .
+17. service nginx status
+18. service nginx start
+19. Access the application from EC2 with port 80
+
+
+My front end URL - http://ec2-3-141-98-58.us-east-2.compute.amazonaws.com:80

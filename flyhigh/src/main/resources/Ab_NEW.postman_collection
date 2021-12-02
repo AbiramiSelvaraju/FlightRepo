@@ -1,0 +1,662 @@
+{
+	"info": {
+		"_postman_id": "839b46d6-6d14-4e09-8fc1-678faa856167",
+		"name": "Ab",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetAirlines",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8087/v1/api/airline",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8087",
+					"path": [
+						"v1",
+						"api",
+						"airline"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAirlines Copy",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8087/v1/api/airline",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8087",
+					"path": [
+						"v1",
+						"api",
+						"airline"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetFlights",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8087/v1/api/flight",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8087",
+					"path": [
+						"v1",
+						"api",
+						"flight"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetFlightTravelDetails",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8087/v1/api/flightTravelDetail",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8087",
+					"path": [
+						"v1",
+						"api",
+						"flightTravelDetail"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetFlightTravelDetails Copy",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8087/v1/api/flightTravelDetail",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8087",
+					"path": [
+						"v1",
+						"api",
+						"flightTravelDetail"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8085/v1/api/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"v1",
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Ticket",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8087/v1/api/ticket",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8087",
+					"path": [
+						"v1",
+						"api",
+						"ticket"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Ticket Summary",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8087/v1/api/user/3/ticketSummary",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8087",
+					"path": [
+						"v1",
+						"api",
+						"user",
+						"3",
+						"ticketSummary"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateAuthenticate",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"user\",\r\n    \"password\": \"flyhigh\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ec2-18-224-251-98.us-east-2.compute.amazonaws.com:8080/authenticate",
+					"protocol": "https",
+					"host": [
+						"ec2-18-224-251-98",
+						"us-east-2",
+						"compute",
+						"amazonaws",
+						"com"
+					],
+					"port": "8080",
+					"path": [
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "welcome",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"user\",\r\n    \"password\": \"flyhigh\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ec2-18-224-251-98.us-east-2.compute.amazonaws.com:8080/authenticate",
+					"protocol": "https",
+					"host": [
+						"ec2-18-224-251-98",
+						"us-east-2",
+						"compute",
+						"amazonaws",
+						"com"
+					],
+					"port": "8080",
+					"path": [
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateAirline",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Token",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwicm9sZSI6ImFkbWluIiwiZXhwIjoxNjM3NDIzOTAyLCJpYXQiOjE2Mzc0MDU5MDJ9.onOrjghVq0PGoyQ9rTCsYDjnk6-mE7ZCMDdmnEH8k2rhxL3B6ZIfVXISOnEoshaqVxe-ou13oazzn4R9ISAd4Q",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"contactNumber\": \"7666543210\",\r\n    \"contactAddress\": \"Paris\",\r\n    \"name\": \"Deccan Air\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/api/flyhigh/v1/api/airline",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"flyhigh",
+						"v1",
+						"api",
+						"airline"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateAirline from ZUUL",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"contactNumber\": \"7776543210\",\r\n    \"contactAddress\": \"DEL\",\r\n    \"name\": \"ZuulAirline\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/flyhigh/v1/api/airline",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"flyhigh",
+						"v1",
+						"api",
+						"airline"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateFlight",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"airline\":{\r\n        \"id\": 1\r\n    },\r\n    \"number\":\"IND-2244\",\r\n    \"instrumentUsed\":\"INS4\",\r\n    \"totalBusinessSeats\":6,\r\n    \"totalNonBusinessSeats\":9,\r\n    \"numberOfRows\":7\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8087/v1/api/flight",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8087",
+					"path": [
+						"v1",
+						"api",
+						"flight"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateFlightTravelDetails",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fromPlace\":{\r\n        \"id\": 3\r\n    },\r\n    \"toPlace\":{\r\n        \"id\": 2\r\n    },\r\n    \"tripType\":{\r\n        \"id\": 2\r\n    },\r\n    \"schedule\":{\r\n        \"id\": 3\r\n    },\r\n    \"flight\":{\r\n        \"id\": 5\r\n    },\r\n    \"toTime\": \"05:35:00\",\r\n    \"fromTime\":\"03:30:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8087/v1/api/flightTravelDetail",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8087",
+					"path": [
+						"v1",
+						"api",
+						"flightTravelDetail"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateUser",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Token",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGUiOiJST0xFX0FETUlOIiwiZXhwIjoxNjM4NDYyMDc1LCJpYXQiOjE2Mzg0NDQwNzV9.67NjxfPCAPSbmT8kzT3eHl-7oE7EW_hFGn61gp34TkO2zgBs0kS20bNSMBPXikxuZ78xomD0WxtrTLENyc-1-w",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"user\",\r\n    \"role\": {\r\n        \"id\": 2\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/api/flyhigh/v1/api/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"flyhigh",
+						"v1",
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateTicket",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"totalSeatsBooked\": 2,\r\n    \"username\": \"sfd\",\r\n    \"emailId\": \"bellu@gmail.com\",\r\n    \"journeyDate\": \"2021-11-18\",\r\n    \"user\": {\r\n        \"id\": 3\r\n    },\r\n    \"mealType\": {\r\n        \"id\": 1\r\n    },\r\n    \"flightTravelDetails\": {\r\n        \"id\": 1\r\n    },\r\n    \"passengers\":[\r\n        {\r\n            \"name\":\"AA\",\r\n            \"gender\":{\r\n                \"id\": 1\r\n            },\r\n            \"age\": 5,\r\n            \"seatNumber\":{\r\n                \"id\": 6\r\n            }\r\n        },\r\n        {\r\n            \"name\":\"BB\",\r\n            \"gender\":{\r\n                \"id\": 2\r\n            },\r\n            \"age\": 8,\r\n            \"seatNumber\":{\r\n                \"id\": 9\r\n            }\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8087/v1/api/ticket",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8087",
+					"path": [
+						"v1",
+						"api",
+						"ticket"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetFlights",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"travelpref\":{\r\n        \"fromPlace\": {\r\n            \"id\": 1,\r\n            \"name\": \"Chennai\"\r\n        },\r\n        \"toPlace\": {\r\n            \"id\": 4,\r\n            \"name\": \"Mumbai\"\r\n        },\r\n        \"tripType\": {\r\n        \"id\": 1,\r\n        \"name\": \"one-way\"\r\n    }\r\n    },\r\n    \"departOn\":\"2021-01-25\"\r\n    \r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8087/v1/api/flightsearch",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8087",
+					"path": [
+						"v1",
+						"api",
+						"flightsearch"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetFlights Copy",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Token",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTYzNzU2NDkwNSwiaWF0IjoxNjM3NTQ2OTA1fQ.svnET06kXbPire-2lp1wgntxd82IaOoqioxcvWl4ENGMX02prDXCA09l4d-AaEiwbOj00_6ZpNn2xa1j7LYkAg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"travelpref\":{\r\n        \"fromPlace\": {\r\n            \"id\": 1,\r\n            \"name\": \"Chennai\"\r\n        },\r\n        \"toPlace\": {\r\n            \"id\": 4,\r\n            \"name\": \"Mumbai\"\r\n        },\r\n        \"tripType\": {\r\n        \"id\": 1,\r\n        \"name\": \"one-way\"\r\n    }\r\n    },\r\n    \"departOn\":\"2021-01-25\"\r\n    \r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/api/flyhigh/v1/api/flightSearch",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"flyhigh",
+						"v1",
+						"api",
+						"flightSearch"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BlockAirline",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Token",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwicm9sZSI6ImFkbWluIiwiZXhwIjoxNjM2OTc1MTQ3LCJpYXQiOjE2MzY5NTcxNDd9.OttaWSmRCwMZiBOuil1bH5wvYsy6OMhARKTJ1ej_0hYrUxXCtU5uUPsMYOlFk55kpjJUE_x4Npveoz-iUa6MFQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/a/v1/api/airline/4/block",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"a",
+						"v1",
+						"api",
+						"airline",
+						"4",
+						"block"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Block Flight",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Token",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTYzODQzMTIyNSwiaWF0IjoxNjM4NDEzMjI1fQ.ytxBIMPDWvfuBs9CxuUU06VEEghqkY0zQMp-7bjphCv1D5Rn4425pdhk-w7tekOE27NEZpivcS85FPA2TlXFLw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/v1/api/flight/block/7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"v1",
+						"api",
+						"flight",
+						"block",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cancel Ticket",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8087/v1/api/ticket/1/cancel",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8087",
+					"path": [
+						"v1",
+						"api",
+						"ticket",
+						"1",
+						"cancel"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9090/api/flyhigh/v1/api/flightTravelDetail",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/api/flyhigh/v1/api/flightTravelDetail",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"flyhigh",
+						"v1",
+						"api",
+						"flightTravelDetail"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
